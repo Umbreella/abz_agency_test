@@ -1,0 +1,13 @@
+[flake8]
+#extend-ignore =
+
+inline-quotes = single
+
+exclude =
+    .git,
+    __pycache__,
+    */migrations/*
+    */snapshots/*
+    manage.py
+
+max-complexity = 10
