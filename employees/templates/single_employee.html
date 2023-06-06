@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/css/alertify.css' %}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <title>Сотрудник</title>
+</head>
+<body>
+<div class="container">
+    {% if not user.is_authenticated %}
+        <div class="row">
+            <div class="col-6 m-auto mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Вы не авторизованы</h5>
+                        <p class="card-text">
+                            Для доступа к данной странице, необходимо быть
+                            авторизованным.
+                        </p>
+                        <a href="{% url 'login' %}" class="btn btn-primary">Войти
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% if operation == 'edit' and not employee %}
+            <div class="row">
+                <div class="card col-9 m-auto mt-5">
+                    <div class="card-body">
+                        <h5 class="card-title">Страница не найдена</h5>
+                        <a href="{% url 'employee_template' %}" class="card-link">
+                            Вернуться
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            {% csrf_token %}
+
+
+            <div class="row mt-3">
+                <div class="col">
+                    <a href="{% url 'employee_template' %}" class="card-link">
+                        <button class="btn">
+                            <i class="fa fa-arrow-left"></i>
+                            Вернуться
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col d-flex justify-content-center">
+                    <h1>Сотрудник</h1>
+                </div>
+            </div>
+            <form id="employee_form" class="needs-validation">
+                <div class="form-group mb-5">
+                    <div class="d-flex justify-content-center">
+                        <img class="w-50 h-50" id="employee_photo_url">
+                    </div>
+                    <label>
+                        Фото
+                    </label>
+                    <input type="file" class="form-control"
+                           id="employee_photo_upload" name="photo"/>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Имя
+                    </label>
+                    <input class="form-control" type="text"
+                           placeholder="Default input"
+                           id="employee_first_name" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Отчество
+                    </label>
+                    <input class="form-control" type="text"
+                           placeholder="Default input"
+                           id="employee_middle_name" name="middle_name" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Фамилия
+                    </label>
+                    <input class="form-control" type="text"
+                           placeholder="Default input"
+                           id="employee_last_name" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Должность
+                    </label>
+                    <div class="d-flex">
+                        <select class="form-control" id="employee_job_title"
+                                name="job_title_id" required>
+                        </select>
+                        <div class="btn btn-primary"
+                                id="btn-load-job-title">
+                            Загрузить еще
+                        </di>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>
+                        Дата принятия на работу
+                    </label>
+                    <input class="form-control" type="date"
+                           placeholder="Default input"
+                           id="employee_date_of_receipt"
+                           name="date_of_receipt" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Заработная плата
+                    </label>
+                    <input class="form-control"
+                           type="number" step=".01" pattern="^\d*(\.\d{0,2})?$"
+                           placeholder="Default input" id="employee_wage"
+                           name="wage" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Начальник
+                    </label>
+                    <div class="d-flex">
+                        <select class="form-control" id="employee_boss"
+                                name="boss_id">
+                            <option value="">Начальник отсутствуют</option>
+                        </select>
+                        <div class="btn btn-primary"
+                                id="btn-load-boss">
+                            Загрузить еще
+                        </di>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-5">
+                    <div class="btn btn-success" id="btn-save">
+                        Сохранить
+                    </div>
+
+                    <div class="btn btn-danger {% if operation != 'edit' %} d-none {% endif %}" id="btn-delete">
+                        Удалить
+                    </div>
+                </div>
+            </di>
+
+            <script src="{% static '/js/employee.js' %}"></script>
+        {% endif %}
+    {% endif %}
+</div>
+<script src="{% static '/js/alertify.js' %}"></script>
+</body>
+</html>

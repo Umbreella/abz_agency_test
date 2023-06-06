@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/css/alertify.css' %}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <title>Сотрудники</title>
+</head>
+<body>
+<div class="container">
+    {% if not user.is_authenticated %}
+    <div class="row">
+        <div class="col-6 m-auto mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Вы не авторизованы</h5>
+                    <p class="card-text">
+                        Для доступа к данной странице, необходимо быть
+                        авторизованным.
+                    </p>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Войти
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col mt-5 d-flex justify-content-center">
+            <h1>Сотрудники</h1>
+        </div>
+    </div>
+
+    <div class="m-auto col-10">
+        <div class="mb-3">
+            <input id="search"
+                   type="text"
+                   class="form-control "
+                   placeholder="Поиск..."
+                   aria-label="Recipient's username"
+                   aria-describedby="basic-addon2">
+        </div>
+        <div class="form-group">
+            <label for="orderBy">
+                Сортировка
+            </label>
+            <select class="form-control" id="orderBy">
+                <option value="id">--- По умолчанию ---</option>
+                <option value="id">ФИО (А-Я)</option>
+                <option value="id">ФИО (Я-А)</option>
+                <option value="job_title__title">Должность (А-Я)</option>
+                <option value="-job_title__title">Должность (Я-А)</option>
+                <option value="date_of_receipt">Дата приема на работу (А-Я)
+                </option>
+                <option value="-date_of_receipt">Дата приема на работу (Я-А)
+                </option>
+                <option value="wage">Заработная плата (А-Я)</option>
+                <option value="-wage">Заработная плата (Я-А)</option>
+            </select>
+        </div>
+        <div class="input-group-append d-flex justify-content-end">
+            <button class="btn btn-outline-secondary search_btn"
+                    type="button">Поиск
+            </button>
+        </div>
+    </div>
+
+    <div class="row mt-5" style="margin-bottom: 50%;">
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'create_employee_template' %}" class="btn btn-success">
+                    Добавить
+                </a>
+            </div>
+
+            <div class="container mb-3"
+                 style="border-bottom: 1px solid black; background: darkgray">
+                <div class="row">
+                    <div class="col-1">
+                        Фото:
+                    </div>
+                    <div class="col-3">
+                        ФИО:
+                    </div>
+                    <div class="col-2">
+                        Должность:
+                    </div>
+                    <div class="col-2">
+                        Дата приема на работу:
+                    </div>
+                    <div class="col-2">
+                        Размер заработной платы:
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+            </div>
+            <ul class="list_main"></ul>
+        </div>
+    </div>
+    <script src="{% static '/js/employee_table.js' %}"></script>
+    {% endif %}
+</div>
+<script src="{% static '/js/alertify.js' %}"></script>
+</body>
+</html>
