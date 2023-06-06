@@ -1,0 +1,16 @@
+body {
+    font-family: Lato, sans-serif !important;
+}
+
+ul {
+    list-style-type: none;
+}
+
+div > ul {
+    padding-left: 0px !important;
+}
+
+li {
+    padding-left: 0;
+    border-top: 1px solid darkgray;
+}
