@@ -5,16 +5,49 @@ from .JobTitle import JobTitle
 
 
 class Employee(models.Model):
-    first_name = models.CharField(max_length=255, default='')
-    middle_name = models.CharField(max_length=255, default='')
-    last_name = models.CharField(max_length=255, default='')
-    job_title = models.ForeignKey(JobTitle, on_delete=models.CASCADE)
-    date_of_receipt = models.DateField(default=timezone.now)
-    wage = models.DecimalField(max_digits=12, decimal_places=2)
-    boss = models.ForeignKey('self', default=None, null=True,
-                             on_delete=models.SET_NULL, blank=True)
-    photo = models.ImageField(upload_to='employee/%Y/%m/%d', null=True,
-                              blank=True)
+    first_name = models.CharField(**{
+        'max_length': 255,
+        'default': '',
+        'help_text': 'Employee first name',
+    })
+    middle_name = models.CharField(**{
+        'max_length': 255,
+        'default': '',
+        'help_text': 'Employee middle name',
+    })
+    last_name = models.CharField(**{
+        'max_length': 255,
+        'default': '',
+        'help_text': 'Employee last name',
+    })
+    date_of_receipt = models.DateField(**{
+        'default': timezone.now,
+        'help_text': 'Employee date of receipt on job',
+    })
+    wage = models.DecimalField(**{
+        'max_digits': 12,
+        'decimal_places': 2,
+        'help_text': 'Employee wage for work',
+    })
+    job_title = models.ForeignKey(**{
+        'to': JobTitle,
+        'on_delete': models.CASCADE,
+        'help_text': 'Employee job title',
+    })
+    boss = models.ForeignKey(**{
+        'to': 'self',
+        'default': None,
+        'null': True,
+        'blank': True,
+        'on_delete': models.SET_NULL,
+        'help_text': 'Employee boss',
+    })
+    photo = models.ImageField(**{
+        'upload_to': 'employee/%Y/%m/%d',
+        'null': True,
+        'blank': True,
+        'help_text': 'Employee photo',
+    })
 
     def save(self, *args, **kwargs):
         if isinstance(self.wage, float):

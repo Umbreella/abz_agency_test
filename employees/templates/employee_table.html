@@ -22,10 +22,10 @@
                 <div class="card-body">
                     <h5 class="card-title">Вы не авторизованы</h5>
                     <p class="card-text">
-                        Для доступа к данной странице, необходимо быть
-                        авторизованным.
+                        Для доступа к данной странице, необходимо быть авторизованным.
                     </p>
-                    <a href="{% url 'login' %}" class="btn btn-primary">Войти
+                    <a href="{% url 'login' %}" class="btn btn-primary">
+                        Войти
                     </a>
                 </div>
             </div>
@@ -53,8 +53,12 @@
             </label>
             <select class="form-control" id="orderBy">
                 <option value="id">--- По умолчанию ---</option>
-                <option value="id">ФИО (А-Я)</option>
-                <option value="id">ФИО (Я-А)</option>
+                <option value="last_name">Фамилия (А-Я)</option>
+                <option value="-last_name">Фамилия (Я-А)</option>
+                <option value="first_name">Имя (А-Я)</option>
+                <option value="-first_name">Имя (Я-А)</option>
+                <option value="middle_name">Отчество (А-Я)</option>
+                <option value="-middle_name">Отчество (Я-А)</option>
                 <option value="job_title__title">Должность (А-Я)</option>
                 <option value="-job_title__title">Должность (Я-А)</option>
                 <option value="date_of_receipt">Дата приема на работу (А-Я)

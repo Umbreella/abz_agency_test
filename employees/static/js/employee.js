@@ -16,7 +16,9 @@ const employee_wage = document.getElementById('employee_wage');
 const employee_boss = document.getElementById('employee_boss');
 
 const loadEmployee = () => {
-    const is_create = current_url.match(/\*\/\d\//) === null;
+    const reg = new RegExp('\/employee\/\\d*\/');
+
+    const is_create = current_url.match(reg) === null;
 
     if (is_create) {
         return;
@@ -136,7 +138,8 @@ btn_save.addEventListener('click', event => {
     let method;
     let status;
 
-    const is_create = current_url.match(/\*\/\d\//) === null;
+    const reg = new RegExp('\/employee\/\\d*\/');
+    const is_create = current_url.match(reg) === null;
 
     if (is_create) {
         url = `${host}/api/employee/`;

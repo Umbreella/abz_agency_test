@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import sys
 from pathlib import Path
 
 from dotenv import dotenv_values
@@ -23,6 +24,12 @@ config = {
     **dotenv_values('.env.production.local'),
     **os.environ,
 }
+
+if 'test' in sys.argv:
+    config = {
+        **dotenv_values('.env.test.local')
+    }
+
 
 SECRET_KEY = config.get('DJANGO_APP_SECRET_KEY')
 
@@ -136,3 +143,5 @@ REST_FRAMEWORK = {
     ),
     'PAGE_SIZE': 50,
 }
+
+TEST_RUNNER = 'snapshottest.django.TestRunner'
