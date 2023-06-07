@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
     'django_filters',
     'rest_framework',
     'employees',
@@ -82,11 +83,11 @@ WSGI_APPLICATION = 'abz_agency.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': config.get('DJANGO_APP_DATABASE_SQL_ENGINE'),
-        'NAME': config.get('DJANGO_APP_DATABASE_SQL_MASTER_DATABASE'),
-        'USER': config.get('DJANGO_APP_DATABASE_SQL_MASTER_USER'),
-        'PASSWORD': config.get('DJANGO_APP_DATABASE_SQL_MASTER_PASSWORD'),
-        'HOST': config.get('DJANGO_APP_DATABASE_SQL_MASTER_HOST'),
-        'PORT': config.get('DJANGO_APP_DATABASE_SQL_MASTER_PORT'),
+        'NAME': config.get('DJANGO_APP_DATABASE_SQL_DATABASE'),
+        'USER': config.get('DJANGO_APP_DATABASE_SQL_USER'),
+        'PASSWORD': config.get('DJANGO_APP_DATABASE_SQL_PASSWORD'),
+        'HOST': config.get('DJANGO_APP_DATABASE_SQL_HOST'),
+        'PORT': config.get('DJANGO_APP_DATABASE_SQL_PORT'),
     }
 }
 
