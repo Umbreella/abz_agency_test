@@ -6,8 +6,9 @@ inline-quotes = single
 exclude =
     .git,
     __pycache__,
-    */migrations/*
-    */snapshots/*
-    manage.py
+    */migrations/*,
+    */snapshots/*,
+    manage.py,
+    venv/*,
 
 max-complexity = 10

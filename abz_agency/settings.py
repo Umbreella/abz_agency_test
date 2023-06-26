@@ -27,9 +27,9 @@ config = {
 
 if 'test' in sys.argv:
     config = {
-        **dotenv_values('.env.test.local')
+        **dotenv_values('.env.test'),
+        **dotenv_values('.env.test.local'),
     }
-
 
 SECRET_KEY = config.get('DJANGO_APP_SECRET_KEY')
 
