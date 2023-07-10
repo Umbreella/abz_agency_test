@@ -33,7 +33,7 @@ if 'test' in sys.argv:
 
 SECRET_KEY = config.get('DJANGO_APP_SECRET_KEY')
 
-DEBUG = config.get('DJANGO_APP_DEBUG')
+DEBUG = int(config.get('DJANGO_APP_DEBUG', 0))
 
 ALLOWED_HOSTS = config.get('DJANGO_APP_ALLOWED_HOSTS').split(' ')
 
