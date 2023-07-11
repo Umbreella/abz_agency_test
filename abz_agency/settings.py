@@ -176,3 +176,5 @@ REST_FRAMEWORK = {
 }
 
 TEST_RUNNER = 'snapshottest.django.TestRunner'
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
