@@ -79,7 +79,7 @@ document.getElementById('btn-delete')
 
 const btn_load_job_title = document.getElementById('btn-load-job-title');
 btn_load_job_title.addEventListener('click', event => {
-    return fetch(`http://127.0.0.1:8000/api/jobtitle/?page=${jobTitleCurrentPage}`)
+    return fetch(`${host}/api/jobtitle/?page=${jobTitleCurrentPage}`)
         .then(response => response.json())
         .then(data => {
             data.results.forEach(item => {
@@ -104,7 +104,7 @@ btn_load_job_title.addEventListener('click', event => {
 
 const btn_load_boss = document.getElementById('btn-load-boss');
 btn_load_boss.addEventListener('click', event => {
-    return fetch(`http://127.0.0.1:8000/api/employee/?page=${bossCurrentPage}`)
+    return fetch(`${host}/api/employee/?page=${bossCurrentPage}`)
         .then(response => response.json())
         .then(data => {
             data.results.forEach(item => {

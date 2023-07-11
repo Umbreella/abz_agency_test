@@ -1,3 +1,5 @@
+const host = window.location.origin;
+
 const ul_main = document.querySelector('.list_main');
 const pagination = document.querySelector('.pagination');
 const search_text = document.getElementById('search');
@@ -17,7 +19,7 @@ const loadData = (base_url, insert_element, boss_id, page) => {
     let url = '';
 
     if (base_url === null) {
-        url += `http://127.0.0.1:8000/api/employee/?`;
+        url += `${host}/api/employee/?`;
         url += `&search=${search_text.value}`;
         url += `&page=${page}`;
         url += `&ordering=${order_select.value}`;
@@ -59,7 +61,7 @@ const loadData = (base_url, insert_element, boss_id, page) => {
                                 ${item.wage}
                             </div>
                             <div class="col-2">
-                                <a href="http://127.0.0.1:8000/employee/${item.id}/" class="btn btn-primary">
+                                <a href="${host}/employee/${item.id}/" class="btn btn-primary">
                                     <i class="fa fa-pencil"></i>
                                 </a>
                                 <div class="btn btn-info">
@@ -94,7 +96,7 @@ const loadData = (base_url, insert_element, boss_id, page) => {
                         return null;
                     }
 
-                    return fetch(`http://127.0.0.1:8000/api/employee/${child_id}/`, {
+                    return fetch(`${host}/api/employee/${child_id}/`, {
                         method: 'PATCH',
                         body: JSON.stringify({
                             'boss_id': item.id,
