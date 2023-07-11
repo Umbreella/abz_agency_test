@@ -65,7 +65,7 @@ document.getElementById('btn-delete')
             },
         }).then(response => {
             if (response.status === 204) {
-                alertify.alert('Данные успешно удалены.')
+                alertify.alert('Оповещение.', 'Данные успешно удалены.')
                     .set({
                         onclose: () => {
                             window.location.replace(`${host}/employee/`);
