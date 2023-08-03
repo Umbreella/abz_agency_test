@@ -24,7 +24,7 @@ from rest_framework.permissions import AllowAny
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="medic.madskill",
+        title='abz.agency',
         default_version='v1',
         description='Документация API',
     ),

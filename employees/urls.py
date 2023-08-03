@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib.auth.views import LogoutView
 from django.urls import path
 
 from .views.CustomLoginView import CustomLoginView
@@ -24,12 +25,17 @@ from .views.SingleEmployeeTemplateView import SingleEmployeeTemplateView
 
 urlpatterns = [
     path(**{
-        'route': '',
+        'route': 'login/',
         'view': CustomLoginView.as_view(),
         'name': 'login',
     }),
     path(**{
-        'route': 'employee/',
+        'route': 'logout/',
+        'view': LogoutView.as_view(),
+        'name': 'logout',
+    }),
+    path(**{
+        'route': '',
         'view': EmployeeTemplateView.as_view(),
         'name': 'employee_template',
     }),

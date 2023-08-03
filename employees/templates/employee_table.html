@@ -32,6 +32,18 @@
         </div>
     </div>
     {% else %}
+    <div class="row mt-3">
+        <div class="col d-flex flex-row-reverse">
+            <a href="{% url 'logout' %}?next={% url 'login' %}"
+               class="card-link">
+                <button class="btn">
+                    Выход
+                    <i class="fa fa-sign-out"></i>
+                </button>
+            </a>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col mt-5 d-flex justify-content-center">
             <h1>Сотрудники</h1>
@@ -79,7 +91,8 @@
     <div class="row mt-5 mb-5">
         <div class="col">
             <div class="d-flex justify-content-end">
-                <a href="{% url 'create_employee_template' %}" class="btn btn-success">
+                <a href="{% url 'create_employee_template' %}"
+                   class="btn btn-success">
                     Добавить
                 </a>
             </div>

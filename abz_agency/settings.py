@@ -178,3 +178,10 @@ REST_FRAMEWORK = {
 TEST_RUNNER = 'snapshottest.django.TestRunner'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SWAGGER_SETTINGS = {
+    'LOGIN_URL': 'login',
+    'LOGOUT_URL': 'logout',
+    'USE_SESSION_AUTH': True,
+    'SECURITY_DEFINITIONS': {},
+}

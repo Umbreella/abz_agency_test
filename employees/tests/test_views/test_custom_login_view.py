@@ -34,7 +34,7 @@ class CustomLoginViewTestCase(APITestCase):
         self.assertEqual(expected_template_name, real_template_name)
 
     def test_Should_SetNextPage(self):
-        expected_next_page = 'employee/'
+        expected_next_page = reverse('employee_template')
         real_next_page = self.tested_class.next_page
 
         self.assertEqual(expected_next_page, real_next_page)
@@ -52,8 +52,7 @@ class CustomLoginViewTestCase(APITestCase):
         real_status = response.status_code
 
         expected_message = (
-            '<p>Your username and password didn\'t match. Please try '
-            'again.</p>'
+            '<p>Неверный логин или пароль.</p>'
         )
         real_data = response.content.decode('utf-8')
 
